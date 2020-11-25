@@ -255,7 +255,7 @@ def to_wh_index(item):
         "parent": item["url"],
         "pageViews": item["pageViews"],
         "product": "help/kotlin-reference",
-        "version": "1.4.10",
+        "version": "1.4.20",
         "breadcrumbs": None,
     }
 
