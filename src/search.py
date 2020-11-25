@@ -209,7 +209,7 @@ def get_webhelp_page_index_objects(content: Tag, url: str, page_path: str, title
 
                 for ind, page_part in enumerate(get_valuable_content(page_path, chapter_content)):
                     page_info = {'url': url_with_href, 'objectID': url_with_href + str(ind), 'content': page_part,
-                                 'headings': chapter_title, 'pageTitle': article_title, 'type': page_type,
+                                 'headings': chapter_title, 'mainTitle': article_title, 'pageTitle': chapter_title, 'type': page_type,
                                  'pageViews': page_views}
                     index_objects.append(page_info)
 
@@ -246,7 +246,7 @@ def to_wh_index(item):
     wh_index = {
         "objectID": item["objectID"],
         "headings": item["headings"],
-        "mainTitle": page_title,
+        "mainTitle": item["mainTitle"] if "mainTitle" in item else page_title,
         "pageTitle": page_title,
         "content": item["content"],
         "url": "https://kotlinlang.org" + item["url"],
