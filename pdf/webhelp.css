@@ -349,3 +349,12 @@ table th {
 .prompt p:last-child {
     margin-bottom: 0;
 }
+
+figure img {
+    max-width: 100% !important;
+    max-height: initial !important;
+    min-width: initial !important;
+    min-height: initial !important;
+    height: auto !important;
+    width: auto !important;
+}
