@@ -124,7 +124,14 @@ kapt.classloaders.cache.disableForProcessors=[annotation processors full names]
 kapt.include.compile.classpath=false
 ```
 
-## Compile avoidance for kapt (since 1.3.20)
+If you face any problems with caching for some annotation processors, disable caching for them:
+
+```properties
+# specify annotation processors full names to disable cache for them
+kapt.classloaders.cache.disableForProcessors=[annotation processors full names]
+```
+
+## Compile avoidance for kapt
 
 To improve the times of incremental builds with kapt, it can use the Gradle [compile avoidance](https://docs.gradle.org/current/userguide/java_plugin.html#sec:java_compile_avoidance).
 With compile avoidance enabled, Gradle can skip annotation processing when rebuilding a project. Particularly, annotation
@@ -304,5 +311,5 @@ kapt {
 }
 ```
 
-If you use the Maven build system, you need to specify concrete plugin settings.
+If you use Maven, you need to specify concrete plugin settings.
 See the [example of settings for Lombok compiler plugin](lombok.md#using-the-plugin-along-with-kapt).

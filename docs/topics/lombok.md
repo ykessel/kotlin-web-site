@@ -6,7 +6,7 @@
 >
 {type="warning"}
 
-The Lombok compiler plugin allows the generation and use of Java's Lombok declarations within the same multilingual module. 
+The Lombok compiler plugin allows the generation and use of Java's Lombok declarations within the same mixed Java/Kotlin module. 
 If such declarations are generated in another module than the Kotlin code that uses these declarations, 
 then you don't need to use this plugin.
 
@@ -30,25 +30,19 @@ for [`@Builder` in YouTrack](https://youtrack.jetbrains.com/issue/KT-46959).
 
 ### Main settings
 
-Apply the `kotlin-plugin-lombok` Gradle plugin in the `build.gradle` file:
+Apply the `kotlin-plugin-lombok` Gradle plugin in the `build.gradle.kts` file:
 
-```groovy
+```kotlin
 plugins {
-    id "org.jetbrains.kotlin.plugin.lombok" version "%kotlinVersion%"
+    id ("org.jetbrains.kotlin.plugin.lombok") version "%kotlinVersion%"
 }
-```
-
-Alternatively, you can use the `apply plugin` syntax:
-
-```groovy
-apply plugin: 'kotlin-plugin-lombok'
 ```
 
 Set up the Lombok itself as the plugin:
 
-```groovy
+```kotlin
 plugins {
-    id "io.freefair.lombok" version "5.3.0"
+    id ("io.freefair.lombok") version "5.3.0"
 }
 ```
 See the [test project with examples of Lombok compiler plugin usage](https://github.com/kotlin-hands-on/kotlin-lombok-examples/tree/master/kotlin_lombok_gradle/nokapt).
@@ -56,9 +50,9 @@ See the [test project with examples of Lombok compiler plugin usage](https://git
 ### Defining the place of lombok.config
 
 If you use the file `lombok.config` for [configuring Lombok](https://projectlombok.org/features/configuration),
-Kotlin Lombok compiler plugin should know where this file situates. Provide a `lombok.config`'s path to the plugin in your `build.gradle` file:
+provide a path to it to the plugin. Add the following code to your `build.gradle.kts` file:
 
-```groovy
+```kotlin
 kotlinLombok {
     lombokConfigurationFile(file("lombok.config"))
 }
@@ -100,12 +94,12 @@ See the [test project example of Lombok compiler plugin and `lombok.config` usag
 ## Using the plugin along with kapt
 
 By default, [kapt](kapt.md) compiler plugin launches all annotation processors and disables javac's annotation processors.
-You need to change this behavior because Java's Lombok should be launched via the annotation processor of Java's compiler.
+You need to change this behavior: enable Java's Lombok.
 
-If you use the Gradle, add the option to the `build.gradle` file to make Java's compiler's annotations
+If you use Gradle, add the option to the `build.gradle.kts` file to make javac's annotations
 processors working:
 
-```groovy
+```kotlin
 kapt {
     keepJavacAnnotationProcessors = true
 }
